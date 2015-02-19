@@ -2,10 +2,13 @@ TIESA Ldap Component Fork
 =========================
 
 This is a fork of the original [tiesa/ldap](https://packagist.org/packages/tiesa/ldap) package. Credits to
-the original author [Cyril Cottet](https://github.com/ccottet) for creating this package!
+the original author [Cyril Cottet](https://github.com/ccottet) for creating this great package!
 
 This fork fixes some minor issues and adds LDAP paged result support. Please note that because of the paging
-support this package requires a higher PHP version (>= 5.4.22) than the original package. 
+support this package requires a higher PHP version (>= 5.4.22) than the original package.
+This package uses the same namespace as the original package and can be used as an easy replacement of the 
+original package.
+ 
 
 Install
 =======
