@@ -126,21 +126,19 @@ ldap_read or ldap_list or ldap_search dilemma:
     <?php
     // ... $manager connection & binding
 
-    $results = $manager->search(Search::SCOPE_ALL, 'ou=comp,dc=example,dc=com', '(objectclass=*)');
+    // Whether to search through all subtree depth (Default = true)
+    $inDepth = true;
+
+    // Search
+    $results = $manager->search('ou=comp,dc=example,dc=com', '(objectclass=*)', $inDepth);
 
     // A search result instance is retrieved which provides iteration capability for a convenient use
-
     foreach ($results as $node) {
         echo $node->getDn();
         foreach ($node->getAttributes() as $attribute) {
             echo sprintf('%s => %s', $attribute->getName(), implode(',', $attribute->getValues()));
         }
     }
-
-SCOPE_ALL will let you search through the whole subtree including the base node with the distinguished name
-you gave for the search. Other options are:
-- SCOPE_BASE: Will only search for the one node which matches the given distinguished name
-- SCOPE_ONE: Will search for nodes just below the one that matches the given distinguished name
 
 Also for more convenience, the component offers a direct method to retrieve one node when you know its
 distinguished name:
