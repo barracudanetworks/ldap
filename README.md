@@ -1,5 +1,8 @@
-TIESA Ldap Component
-====================
+TIESA Ldap Component Fork
+=========================
+
+This is a fork of the original [tiesa/ldap](https://packagist.org/packages/tiesa/ldap) package. Credits to
+the original author [Cyril Cottet](https://github.com/ccottet) for
 
 Install
 =======
@@ -11,7 +14,7 @@ Then, under your project root folder, create a new file called composer.json and
 
     {
         "require": {
-            "tiesa/ldap": "dev-master"
+            "81square/tiesa-ldap": "dev-master"
         }
     }
 
@@ -58,6 +61,11 @@ persistence operations:
 
     $manager->bind('cn=user,dc=example,dc=com', 'myTopSecretPassword');
 
+If you are connecting to an Active Directory domain, you can also bind like this:
+
+    $manager->bind('user@example.com', 'myTopSecretPassword');
+
+
 Connection Parameters
 ---------------------
 
@@ -75,6 +83,11 @@ Error Handling
 
 All Ldap error codes and messages which are usually quite inconvenient to track (and are easily forgotten about) are
 handled with convenient exceptions for all LDAP operations.
+
+NOTE: Just like the php ldap_connect function, the Manager's connect method will 
+not actually connect. The actual connection is made during bind(). If your DC is
+unreachable or you provided the wrong connection configuration, you will get an
+exception on bind() and _not_ on connect().
 
 Hence, for instance, you can write the following:
 
@@ -178,7 +191,7 @@ About
 Requirements
 ------------
 
-- PHP >= 5.3.3 with ldap extension
+- PHP >= 5.4.22 with ldap extension
 - Composer
 
 License

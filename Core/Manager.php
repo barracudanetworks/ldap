@@ -29,9 +29,28 @@ use Toyota\Component\Ldap\Core\Node;
 class Manager
 {
 
+    /**
+     *
+     * @var ConnectionInterface 
+     */
     protected $connection = null;
+    
+    /**
+     *
+     * @var bool 
+     */
     protected $isBound = false;
+    
+    /**
+     *
+     * @var array 
+     */
     protected $configuration = array();
+    
+    /**
+     *
+     * @var DriverInterface 
+     */
     protected $driver = null;
 
     /**
