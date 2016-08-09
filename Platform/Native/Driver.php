@@ -49,8 +49,9 @@ class Driver implements DriverInterface
             );
         }
 
+        // SSL connections use URI format, which needs the port appended
         if ($withSSL) {
-            $hostname = 'ldaps://' . $hostname;
+            $hostname = 'ldaps://' . $hostname . ':' . $port;
         }
 
         $connection = @ldap_connect($hostname, $port);
