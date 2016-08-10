@@ -400,4 +400,13 @@ class Manager
         $this->connection->deleteEntry($node->getDn());
     }
 
+    /**
+     * Fetches the current configuration array of this Manager object
+     *
+     * @return array
+     */
+    public function getConfiguration()
+    {
+        return $this->configuration;
+    }
 }
