@@ -11,6 +11,7 @@
 
 namespace Toyota\Component\Ldap\Platform\Native;
 
+use Toyota\Component\Ldap\API\EntryInterface;
 use Toyota\Component\Ldap\API\SearchInterface;
 
 /**
@@ -32,10 +33,8 @@ class SearchPreloaded implements SearchInterface
      */
     public function __construct(array $entries = array())
     {
-        $this->entries = null;
-        $this->currIndex = -1;
-        $this->isEndReached = false;
-        
+	    $this->reset();
+
         if (!empty($entries)) {
             $this->addEntries($entries);
         }
@@ -51,7 +50,7 @@ class SearchPreloaded implements SearchInterface
     public function addEntries(array $entries)
     {
         if (!isset($entries['count'])) {
-            throw new \InvalidArgumentException("Entry set must have count property!");
+            throw new \InvalidArgumentException("Entry set must have count property");
         }
         
         if (null === $this->entries) {
@@ -68,7 +67,6 @@ class SearchPreloaded implements SearchInterface
         $this->entries = array_merge($this->entries, $entries);
         $this->entries['count'] = $newCount;
         
-        // reset
         $this->reset();
     }
     
@@ -116,7 +114,7 @@ class SearchPreloaded implements SearchInterface
      */
     public function reset()
     {
-        $this->previous = null;
+	    $this->currIndex = -1;
         $this->isEndReached = false;
     }
 
